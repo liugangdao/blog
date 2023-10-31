@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>钢刀的个人网站</title>
+    <title>Gang dao的个人网站</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="description" content="Description">
     <meta name="viewport"
@@ -13,6 +13,47 @@
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
     <!-- 默认主题 -->
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify/lib/themes/vue.css">
+    <style>
+      /* 以下是侧边栏(自定义) */
+      aside.sidebar ul li {
+        margin: 0;
+        position: relative;
+      }
+   
+      aside.sidebar ul li ul {
+        margin: 6px 0;
+      }
+   
+      aside.sidebar ul li p {
+        padding-left: 22px;
+        font-size: 18px;
+        font-weight: normal;
+      }
+   
+      aside.sidebar ul li a {
+        line-height: 35px;
+        font-size: 14px;    /* 导航栏字体大小 */
+        padding: 3px 0 3px 22px;
+      }
+   
+      aside.sidebar ul li.active > a {
+        font-size: 16px !important;
+      }
+   
+      aside.sidebar ul li.active > a:before {
+        content: '' !important;
+        position: absolute !important;
+        margin: 0 !important;
+        width: 10px !important;
+        height: 10px !important;
+        top: 15px !important;
+        left: 0px !important;
+        border-radius: 50% !important;
+        background-color: #3F51B5 !important;
+        box-shadow: 0 0 0 3px rgba(226, 218, 194, 0.4) !important;
+      }
+  </style>
+  
 </head>
 
 <body>
@@ -21,13 +62,18 @@
     <script>
         window.$docsify = {
             // 项目名称
-            name: '钢刀的个人网站',
+            name: 'Gangdao的个人网站',
             // 仓库地址，点击右上角的Github章鱼猫头像会跳转到此地址
             repo: 'https://github.com/liugangdao',
+
+            
             // 侧边栏支持，默认加载的是项目根目录下的_sidebar.md文件
             loadSidebar: true,
-            // 导航栏支持，默认加载的是项目根目录下的_navbar.md文件
-            loadNavbar: true,
+            // alias: {
+            //   '/.*/_sidebar.md': '/_sidebar.md'
+            // },
+            // // 导航栏支持，默认加载的是项目根目录下的_navbar.md文件
+            // loadNavbar: true,
             // 封面支持，默认加载的是项目根目录下的_coverpage.md文件
             coverpage: true,
             // 最大支持渲染的标题层级
@@ -36,27 +82,71 @@
             subMaxLevel: 4,
             // 小屏设备下合并导航栏到侧边栏
             mergeNavbar: true,
+            themeColor: '#3F51B5',
+            search: {
+                maxAge: 86400000,// 过期时间，单位毫秒，默认一天
+                paths: 'auto',// 注意：仅适用于 paths: 'auto' 模式
+                placeholder: '🔍 搜索',
+                // 支持本地化
+                // placeholder: {
+                //     '/': '🔍 搜索',
+                //     // '/': 'Type to search'
+                // },
+                noData: '😒 找不到结果',
+                depth: 4,
+                // hideOtherSidebarContent: false,
+                // namespace: 'Gangdao的个人网站',
+            },
+            // 字数统计
+            count:{
+              countable:true,
+              fontsize:'0.9em',
+              color:'rgb(90,90,90)',
+              language:'chinese'
+            },
+            plugins: [
+              function(hook, vm) {
+                hook.doneEach(function(html, next) {
+                  MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+                  MathJax.Hub.Config({
+                    tex2jax: {
+                      inlineMath: [ ['$', '$'] ],
+                      displayMath: [ ['$$', '$$']]
+                    }
+                  });
+                })
+              }
+            ]
         }
     </script>
-    <script>
+    <!-- <script>
         // 搜索配置(url：https://docsify.js.org/#/zh-cn/plugins?id=%e5%85%a8%e6%96%87%e6%90%9c%e7%b4%a2-search)
         window.$docsify = {
             search: {
                 maxAge: 86400000,// 过期时间，单位毫秒，默认一天
-                paths: auto,// 注意：仅适用于 paths: 'auto' 模式
+                paths: 'auto',// 注意：仅适用于 paths: 'auto' 模式
                 placeholder: '搜索',
                 // 支持本地化
-                placeholder: {
-                    '/zh-cn/': '搜索',
-                    '/': 'Type to search'
-                },
-                noData: '找不到结果',
+                // placeholder: {
+                //     '/': '🔍 搜索',
+                //     // '/': 'Type to search'
+                // },
+                noData: '😒 找不到结果',
                 depth: 4,
                 hideOtherSidebarContent: false,
-                namespace: 'Docsify-Guide',
-            }
+                // namespace: 'Gangdao的个人网站',
+            },
+            // 字数统计
+            count:{
+              countable:true,
+              fontsize:'0.9em',
+              color:'rgb(90,90,90)',
+              language:'chinese'
+            },
+            
         }
-    </script>
+    </script> -->
+    
     <!-- docsify的js依赖 -->
     <script src="//cdn.jsdelivr.net/npm/docsify/lib/docsify.min.js"></script>
     <!-- emoji表情支持 -->
@@ -67,6 +157,15 @@
     <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
     <!--在所有的代码块上添加一个简单的Click to copy按钮来允许用户从你的文档中轻易地复制代码-->
     <script src="//cdn.jsdelivr.net/npm/docsify-copy-code/dist/docsify-copy-code.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    
+   
+    <!-- 字数统计 -->
+   <script src="//unpkg.com/docsify-count/dist/countable.js"></script>
+   
+
+
 </body>
 
 </html>
